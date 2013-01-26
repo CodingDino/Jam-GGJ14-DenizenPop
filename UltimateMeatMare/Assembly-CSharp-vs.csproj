@@ -44,7 +44,16 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\PlayerMovement.cs" />
+     <Compile Include="Assets\PlatformRespawn.cs" />
+     <Compile Include="Assets\Scripts\BBQJump.cs" />
+     <Compile Include="Assets\Scripts\CarrotScript.cs" />
+     <Compile Include="Assets\Scripts\FoalScript.cs" />
+     <Compile Include="Assets\Scripts\HedgeSlowDown.cs" />
+     <Compile Include="Assets\Scripts\MeatMonster.cs" />
+     <Compile Include="Assets\Scripts\OnionScript.cs" />
+     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\SoundController.cs" />
+     <Compile Include="Assets\Scripts\UIScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
