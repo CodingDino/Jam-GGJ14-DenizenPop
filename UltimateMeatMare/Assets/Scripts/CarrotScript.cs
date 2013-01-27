@@ -1,27 +1,22 @@
 using UnityEngine;
 using System.Collections;
 
-public class CarrotScript : MonoBehaviour {
+public class CarrotScript : PowerUpScript {
 	
 	public PlayerMovement horse = null;
 	
 	// Use this for initialization
-	void Start () {
+	new void Start () {
 		horse = GameObject.Find("Horse").GetComponent<PlayerMovement>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		base.Start ();
 	}
 	
 	void OnTriggerEnter(Collider tCollider)
 	{
-		if(tCollider.gameObject.name == "Horse")
+		if(tCollider.gameObject.name == "Horse" && horse)
 		{
 			// speed up the horse
 			horse.CarrotBoost();
-			Debug.Log("Carrot Collected!");
 			Destroy(this.gameObject);
 		}
 	}

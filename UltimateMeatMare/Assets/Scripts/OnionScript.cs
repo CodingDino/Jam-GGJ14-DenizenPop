@@ -1,18 +1,14 @@
 using UnityEngine;
 using System.Collections;
 
-public class OnionScript : MonoBehaviour {
+public class OnionScript : PowerUpScript {
 	
 	private MeatMonster refMeatMonster = null;
 	
 	// Use this for initialization
-	void Start () {
+	new void Start () {
+		base.Start ();
 		refMeatMonster = GameObject.Find("MeatMonster").GetComponent<MeatMonster>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 	
 	void OnTriggerEnter(Collider tCollider)
@@ -21,7 +17,6 @@ public class OnionScript : MonoBehaviour {
 		{
 			// speed up the Meat Monster
 			refMeatMonster.OnionBoost();
-			Debug.Log("Onion Collected!");
 			Destroy(this.gameObject);
 		}
 	}

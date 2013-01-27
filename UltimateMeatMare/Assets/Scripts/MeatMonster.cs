@@ -2,35 +2,46 @@ using UnityEngine;
 using System.Collections;
 
 public class MeatMonster : MonoBehaviour {
-
+	
+	// Sound
+	SoundEffectHandler sound = null;
+	
+	private PlayerMovement	pHorse = null;
+	
 	private bool isBoosting = false;
 	private float currentSpeed = 0;
 	private int boostCount = 0;
 	private float accel = 0.00167f;
 	
+	private bool started = false;
+	
 	// Use this for initialization
 	void Start () {
+		sound = GameObject.Find("SoundEffects").GetComponent<SoundEffectHandler>();
+		pHorse = GameObject.Find("Horse").GetComponent<PlayerMovement>();
 		currentSpeed = 1.0f;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		
-		// Base acceleration
-		currentSpeed += accel;
-		
-		// Move based on currentSpeed
-    	transform.Translate(Vector3.right * currentSpeed * Time.deltaTime);
-		
-		// check for slowdown
-		if(isBoosting)
+		if(started)
 		{
-			boostCount++;
-			if(boostCount > 180)
+			// Base acceleration
+			currentSpeed += accel;
+			
+			// Move based on currentSpeed
+	    	transform.Translate(Vector3.right * currentSpeed * Time.deltaTime);
+			
+			// check for slowdown
+			if(isBoosting)
 			{
-				//stop boosting
-				isBoosting = false;
-				currentSpeed -=0.5f;
+				boostCount++;
+				if(boostCount > 180)
+				{
+					//stop boosting
+					isBoosting = false;
+					currentSpeed -=0.5f;
+				}
 			}
 		}
 	}
@@ -41,6 +52,8 @@ public class MeatMonster : MonoBehaviour {
 	
 	public void OnionBoost()
 	{
+		if(pHorse.IsStarted()) sound.onion_hit.Play ();
+		
 		// speed up temporarily
 		if(!isBoosting)
 		{
@@ -52,11 +65,28 @@ public class MeatMonster : MonoBehaviour {
 	
 	void OnTriggerEnter(Collider tCollider)
 	{
-		if(tCollider.gameObject.name == "Horse")
+		if(started)
 		{
-			// GAME OVER, MAN!
-			//tCollider.gameObject.GetComponent("HorseMovement").GameOver();
-			Debug.Log ("Game over, man, it's game over!");
+			if(tCollider.gameObject.name == "Horse")
+			{
+				// GAME OVER, MAN!
+				//tCollider.gameObject.GetComponent("HorseMovement").GameOver();
+				started = false;
+				if(pHorse != null)
+				{
+					pHorse.GameFinished();
+				}
+			}
 		}
+	}
+	
+	public void GameStart()
+	{
+		started = true;
+	}
+	
+	public void GameFinish()
+	{
+		started = false;
 	}
 }
