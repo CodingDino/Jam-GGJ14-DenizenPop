@@ -5,6 +5,9 @@ using System.Collections;
 
 public class SoundController : MonoBehaviour {
 	
+	public AudioSource heartbeat = null;
+	public AudioSource music = null;
+	
 	public float maxDist = 6.7f;
 	public float minDist = 3.0f;
 	
@@ -23,14 +26,15 @@ public class SoundController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// set the volume relative to the horse
-		distBetweenObjs = pHorse.transform.position.x - pMonster.transform.position.x;
-		distBetweenObjs = distBetweenObjs-1.0f;
+		distBetweenObjs = (pHorse.renderer.bounds.min.x - pMonster.renderer.bounds.max.x)+0.444f;
 		relVol = 1.0f-distBetweenObjs;
 		if(relVol > 0.0f)
 		{
-			gameObject.audio.volume = relVol;
+			heartbeat.volume = relVol;
+			music.volume = 1-relVol;
 		}else{
-			gameObject.audio.volume = 0.0f;
+			heartbeat.volume = 0.0f;
+			music.volume = 1;
 		}
 	}
 }
