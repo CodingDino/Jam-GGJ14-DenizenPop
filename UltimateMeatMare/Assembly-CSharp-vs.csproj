@@ -44,15 +44,19 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\PlatformRespawn.cs" />
+     <Compile Include="Assets\Scripts\AnimatedSprite.cs" />
      <Compile Include="Assets\Scripts\BBQJump.cs" />
      <Compile Include="Assets\Scripts\CarrotScript.cs" />
      <Compile Include="Assets\Scripts\FoalScript.cs" />
+     <Compile Include="Assets\Scripts\GameStartScript.cs" />
      <Compile Include="Assets\Scripts\HedgeSlowDown.cs" />
      <Compile Include="Assets\Scripts\MeatMonster.cs" />
      <Compile Include="Assets\Scripts\OnionScript.cs" />
+     <Compile Include="Assets\Scripts\PlatformRespawn.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+     <Compile Include="Assets\Scripts\PowerUpScript.cs" />
      <Compile Include="Assets\Scripts\SoundController.cs" />
+     <Compile Include="Assets\Scripts\SoundEffectHandler.cs" />
      <Compile Include="Assets\Scripts\UIScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
